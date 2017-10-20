@@ -1,0 +1,9 @@
+{% if all_items %}
+<ul>
+    {% for item in all_items %}
+    <li>{{ item.item_name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<h1>The Database is empty... -_-</h1>
+{% endif %}

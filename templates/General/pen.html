@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% if all_items %}
+    {% block content %}
+
+    <h1>Welcome to Hostel Management System<h1>
+    <!--fsdf-->
+    <table  cellspacing="100">
+      <tr>
+        <th>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">General
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="../pen" id="pens">Pen</a></li>
+        <li><a href="../pencils" id="pencils">Pencil</a></li>
+        <li><a href="../sim" id="sim">Sim</a></li>
+        <li><a href="../files" id="files">Files</a></li>
+        <li><a href="../sheets" id="sheets">Sheets</a></li>
+        <li><a href="../washing_powder" id="washing_powder">Washing powder</a></li>
+
+      </ul>
+    </div>
+    </th>
+
+    <th>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">HMC
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="../chess_boards" id="chess_boards">Chess Boards</a></li>
+        <li><a href="../tt_table" id="tt_tables">TT table</a></li>
+        <li><a href="../cricket_bats" id="cricket_bats">Cricket Bats</a></li>
+        <li><a href="../cricket_balls" id="cricket_balls">Cricket Balls</a></li>
+        <li><a href="../footballs" id="footballs">Footballs</a></li>
+        <li><a href="../badminton" id="badminton">Badminton</a></li>
+        <li><a href="../washing_machine" id="washing_machine">Washhing Machine</a></li>
+        <li><a href="../watercooler" id="watercooler">Watercooler</a></li>
+      </ul>
+    </div>
+    </th>
+    <th>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Canteen
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="../chips" id="chips">Chips</a></li>
+        <li><a href="../snacks" id="snacks">Snacks</a></li>
+        <li><a href="../biscuits" id="biscuits">Biscuits</a></li>
+        <li><a href="../beverages" id="beverages">Beverages</a></li>
+      </ul>
+    </div>
+    </th>
+    <th>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Juice Center
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="../amul_products" id="amul_products">Amul Products</a></li>
+        <li><a href="../fruits" id="fruits">Fruits</a></li>
+        <li><a href="../soft_drinks" id="soft_drinkds">Soft Drinks</a></li>
+        <li><a href="../juice" id="juice">Juice</a></li>
+      </ul>
+    </div>
+    </th>
+    </tr>
+    </table>
+    <!--split button---------------->
+
+    <!-- Data Table -->
+
+    <br>
+    <div style="width:100%; margin: auto; font-size: 20px">
+
+        <table class="table table-striped table-hover table-responsive">
+    	<tr>
+    		<th>Item Name</th>
+    		<th>Item Type</th>
+    		<th>Item Cost(per piece)</th>
+    		<th>Availability</th>
+        <th>Change</th>
+    	</tr>
+      {% for item in all_items %}
+    	<tr>
+    		<td>{{ item.item_name }}</td>
+    		<td>{{ item.item_type }}</td>
+    		<td>{{ item.item_cost }}</td>
+
+    	{% if item.item_stock > 0 %}
+        <td>Available</td>
+        {% else %}
+        <td>Unavailable</td>
+        {% endif %}
+        <td>
+          <a href="{% url 'forms:item-update' item.id %}"><button type="button" class="btn btn-default ">
+              <span class="glyphicon glyphicon-pencil" ></span></button></a>
+              <a href="{% url 'forms:item-delete' item.id %}"><button type="button" class="btn btn-default ">
+                  <span class="glyphicon glyphicon-remove" ></span></button></a>
+              
+        </td>
+
+
+
+
+    	</tr>
+    	{% endfor %}
+        </table>
+        <div >
+
+    <!-- <h1><a href="/forms/avail/{{ pass }}/">Make it available</a></h1> -->
+
+    {% endblock %}
+{% endif %}
+    {% block redirect %}
+
+   <!-- <META http-equiv="refresh" content="5;URL=/">    -->
+
+    {% endblock %}
+
+
+<!--
+<script  src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+<script>"use strict";function IterarCamposEdit(t,n){function i(t){if(null==colsEdi)return!0;for(var n=0;n<colsEdi.length;n++)if(t==colsEdi[n])return!0;return!1}var o=0;t.each(function(){o++,"buttons"!=$(this).attr("name")&&i(o-1)&&n($(this))})}function FijModoNormal(t){$(t).parent().find("#bAcep").hide(),$(t).parent().find("#bCanc").hide(),$(t).parent().find("#bEdit").show(),$(t).parent().find("#bElim").show(),$(t).parents("tr").attr("id","")}function FijModoEdit(t){$(t).parent().find("#bAcep").show(),$(t).parent().find("#bCanc").show(),$(t).parent().find("#bEdit").hide(),$(t).parent().find("#bElim").hide(),$(t).parents("tr").attr("id","editing")}function ModoEdicion(t){return"editing"==t.attr("id")}function rowAcep(t){var n=$(t).parents("tr"),i=n.find("td");ModoEdicion(n)&&(IterarCamposEdit(i,function(t){var n=t.find("input").val();t.html(n)}),FijModoNormal(t),params.onEdit(n))}function rowCancel(t){var n=$(t).parents("tr"),i=n.find("td");ModoEdicion(n)&&(IterarCamposEdit(i,function(t){var n=t.find("div").html();t.html(n)}),FijModoNormal(t))}function rowEdit(t){var n=$(t).parents("tr"),i=n.find("td");ModoEdicion(n)||(IterarCamposEdit(i,function(t){var n=t.html(),i='<div style="display: none;">'+n+"</div>",o='<input class="form-control input-sm" value="'+n+'">';t.html(i+o)}),FijModoEdit(t))}function rowElim(t){$(t).parents("tr").remove(),params.onDelete()}function rowAgreg(){if(0==$tab_en_edic.find("tbody tr").length){var t="";(i=$tab_en_edic.find("thead tr").find("th")).each(function(){"buttons"==$(this).attr("name")?t+=colEdicHtml:t+="<td></td>"}),$tab_en_edic.find("tbody").append("<tr>"+t+"</tr>")}else{var n=$tab_en_edic.find("tr:last");n.clone().appendTo(n.parent());var i=(n=$tab_en_edic.find("tr:last")).find("td");i.each(function(){"buttons"==$(this).attr("name")||$(this).html("")})}}function TableToCSV(t){var n="",i="";return $tab_en_edic.find("tbody tr").each(function(){ModoEdicion($(this))&&$(this).find("#bAcep").click();var o=$(this).find("td");n="",o.each(function(){"buttons"==$(this).attr("name")||(n=n+$(this).html()+t)}),""!=n&&(n=n.substr(0,n.length-t.length)),i=i+n+"\n"}),i}var $tab_en_edic=null,params=null,colsEdi=null,newColHtml='<div class="btn-group pull-right"><button id="bEdit" type="button" class="btn btn-sm btn-default" onclick="rowEdit(this);"><span class="glyphicon glyphicon-pencil" > </span></button><button id="bElim" type="button" class="btn btn-sm btn-default" onclick="rowElim(this);"><span class="glyphicon glyphicon-trash" > </span></button><button id="bAcep" type="button" class="btn btn-sm btn-default" style="display:none;" onclick="rowAcep(this);"><span class="glyphicon glyphicon-ok" > </span></button><button id="bCanc" type="button" class="btn btn-sm btn-default" style="display:none;" onclick="rowCancel(this);"><span class="glyphicon glyphicon-remove" > </span></button></div>',colEdicHtml='<td name="buttons">'+newColHtml+"</td>";$.fn.SetEditable=function(t){var n={columnsEd:null,$addButton:null,onEdit:function(){},onDelete:function(){},onAdd:function(){}};params=$.extend(n,t),this.find("thead tr").append('<th name="buttons"></th>'),this.find("tbody tr").append(colEdicHtml),$tab_en_edic=this,null!=params.$addButton&&params.$addButton.click(function(){rowAgreg()}),null!=params.columnsEd&&(colsEdi=params.columnsEd.split(","))};</script>
+
+
+
+<div id="font">
+
+
+<div style="width:100%; margin: auto; font-size: 20px">
+
+<table class="table" id="makeEditable" >
+    <thead>
+      <tr>
+        <th >Item</th>
+        <th>Quantity</th>
+        <th><span style="float:right"><button type="button" class="btn btn-primary btn-md" id="but_add">Add New Row</button></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td>Defaultson</td>
+
+      </tr>
+      <tr class="success">
+        <td>Success</td>
+        <td>Doe</td>
+
+      </tr>
+      <tr class="danger">
+        <td>Danger</td>
+        <td>Moe</td>
+
+      </tr>
+      <tr class="info">
+        <td>Info</td>
+        <td>Dooley</td>
+
+      </tr>
+      <tr class="warning">
+        <td>Warning</td>
+        <td>Refs</td>
+
+      </tr>
+      <tr class="active">
+        <td>Active</td>
+        <td>Activeson</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+ $('#makeEditable').SetEditable({ $addButton: $('#but_add')});
+</script>
+</div>
+
+test--------------------------------------------------------------------------------------- -->

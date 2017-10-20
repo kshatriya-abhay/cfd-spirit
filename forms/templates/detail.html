@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>{{ item.item_name }}</h1 >
+    <h3> Type: {{ item.item_type }}</h3>
+    <h3> Price: Rs. {{ item.item_cost }}</h3>
+    <h3>Stock: {{ item.item_stock }}</h3>
+    {% if item.item_stock > 0 %}
+    <h1>Available</h1>
+    {% else %}
+    <h1>Unvailable</h1>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+  <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for items.." title="Type in a name">
+
+
+
+       <br>
+       <br>
+          <h1>Items:</h1>
+       <div class="container">
+
+
+               <div class="container">
+         </div>
+       </div>
+
+       <h3>
+
+    <ul id="myUL">
+
+      {% for item in all_items %}
+            <li><a href="{{ item.id }}">{{ item.item_name }}</a></li>
+      {% endfor %}
+
+    </ul>
+
+  </h3>
+  <script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+</script>
+{% endblock %}

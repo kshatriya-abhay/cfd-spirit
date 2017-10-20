@@ -1,0 +1,30 @@
+body {
+background: url('../website/css/background.jpg'); /*You will specify your image path here.*/
+
+-moz-background-size: cover;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: top center !important;
+background-repeat: no-repeat !important;
+background-attachment: fixed;
+}
+
+div {
+position: relative;
+top: 100px;
+left: 200px;
+font-size: 70px;
+color: black;
+
+  }
+
+  #h1{
+font-size: 60px;
+  font-family: 'Permanent Marker', cursive;
+
+  }
+   #p{
+    font-size: 40px;
+    font-family: 'Katibeh', cursive;
+    padding: 0;
+  }

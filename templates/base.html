@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Start</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <script  src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+
+
+    </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
+
+    {% block redirect %}
+
+    {% endblock %}
+<!--search------------------------------------------------------>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+
+<!--search-->
+
+  </head>
+  <body>
+
+    <nav class='navbar maynav navbar-inverse' role='navigation' id='navbar'>
+      <div class="container" >
+<!-- hjkdfhjkdshfjsdhfjksdfhjkdshfjk-->
+<div class="navbar-header">
+   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+     <span class="icon-bar"></span>
+   </button>
+ <a class="navbar-brand" href=/><strong>Spirit</strong></a>
+ </div>
+ <div class="collapse navbar-collapse" id="myNavbar">
+
+
+
+
+<!--dfdsaf-->
+        {% block navbar %}
+
+        {% endblock %}
+        <a class='navbar-brand mynav' href="/forms/all"><span class="glyphicon glyphicon-th-list"> <strong>All Items</strong></a>
+
+
+  {% if user.is_authenticated %}
+        <ul class='nav navbar-nav navbar-right'>
+        <a class='navbar-brand mynav' href="/test"><span class="glyphicon glyphicon-th"> <strong>Dashboard</strong></a>
+          <a class='navbar-brand mynav' href="{% url 'forms:item-create' %}"><span class="glyphicon glyphicon-plus"> <strong>Add</strong></a>
+        <a  class='navbar-brand mynav' href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-log-out"> <strong>Log-Out</strong></a>
+        </ul>
+
+        {% else %}
+        <ul class='nav navbar-nav navbar-right'>
+          <a class='navbar-brand mynav' href="{% url 'accounts:login' %}"><span class="glyphicon glyphicon-log-in"></span> <strong>Login</strong></a>
+          <a class='navbar-brand mynav' href="{% url 'accounts:signup' %}"><span class="glyphicon glyphicon-user"></span> <strong>Sign Up</strong></a>
+        {% endif %}
+        </ul>
+
+      </div>
+
+
+    </nav>
+
+    <div class="container mycontent">
+
+
+    {% block content %}
+
+    {% endblock %}
+      </div>
+  </body>
+</html>

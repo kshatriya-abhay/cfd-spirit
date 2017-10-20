@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+  <div class="jumbotron">
+    <p>Are you sure you want to delete "{{ item.item_name }}"?</p>
+    <input type="submit" class="btn btn-warning" value="Confirm" >
+    <!-- <button type="button" class="btn btn-warning">Confirm</button> -->
+  </div>
+  </div>
+</form>
+{% endblock %}
