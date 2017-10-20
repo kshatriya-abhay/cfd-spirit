@@ -25,7 +25,7 @@ SECRET_KEY = '$&%6h@mg^4#j(6m6(jka4@ydb%06p_t#fopbnbboblr2zq@o*m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ksha.pythonanywhere.com']
 
 LOGIN_URL = 'accounts/login'
 
