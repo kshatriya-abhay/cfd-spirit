@@ -1,3 +1,7 @@
+#to be added
+Multi Hostel Support
+Also view which which shopkeeper is providing the item in the item details
+
 #cfd-spirit
 
 #Overview
